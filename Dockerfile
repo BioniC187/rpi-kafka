@@ -16,7 +16,7 @@ ENV env_config_file_relative_path=config/server.properties
 RUN apt-get update
 RUN apt-get install -y wget
 
-COPY core/download-kafka.sh /tmp
+COPY core/download.sh /tmp
 RUN sh /tmp/download-kafka.sh 
 
 RUN tar -xzf ${env_filename}.tgz -C /usr
@@ -24,7 +24,7 @@ RUN tar -xzf ${env_filename}.tgz -C /usr
 WORKDIR ${env_installpath}
 
 COPY core/var-sub.sh ${env_installpath}
-COPY core/start-kafka.sh ${env_installpath}
+COPY core/start.sh ${env_installpath}
 
 RUN chmod +x ./start-kafka.sh
 RUN chmod +x bin/kafka-server-start.sh
