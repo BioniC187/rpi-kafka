@@ -24,13 +24,9 @@ COPY core/start.sh ${env_installpath}
 RUN chmod +x ./start.sh
 RUN chmod +x bin/kafka-server-start.sh
 
-ARG ip=172.17.0.3
-ARG oip=192.168.88.103
-ARG config_zookeeper_connect=192.168.88.103:2181
-ARG config_advertised_host_name=${oip}
-
-ENV config_zookeeper_connect=${config_zookeeper_connect}
-ENV config_advertised_host_name=${config_advertised_host_name}
+ENV env_externalip=192.168.88.103
+ENV config_zookeeper_connect=${env_externalip}:2181
+ENV config_advertised_host_name=${env_externalip}
 
 CMD ["bash", "start.sh"]
 
