@@ -17,7 +17,7 @@ RUN apt-get update
 RUN apt-get install -y wget
 
 COPY core/download.sh /tmp
-RUN sh /tmp/download-kafka.sh 
+RUN sh /tmp/download.sh 
 
 RUN tar -xzf ${env_filename}.tgz -C /usr
 
@@ -26,7 +26,7 @@ WORKDIR ${env_installpath}
 COPY core/var-sub.sh ${env_installpath}
 COPY core/start.sh ${env_installpath}
 
-RUN chmod +x ./start-kafka.sh
+RUN chmod +x ./start.sh
 RUN chmod +x bin/kafka-server-start.sh
 
 
@@ -43,5 +43,5 @@ ENV config_advertised_host_name=${config_advertised_host_name}
 #ENV config_bootstrap_servers=${oip}:9092
 
 
-CMD ["bash", "start-kafka.sh"]
+CMD ["bash", "start.sh"]
 #CMD ["ls"]
