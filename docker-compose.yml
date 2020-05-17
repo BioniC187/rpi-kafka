@@ -1,0 +1,12 @@
+version: '3'
+services:
+  zookeeper:
+    image: bionic187/rpi-zookeeper:1.0.0
+    ports:
+      - "2181:2181"
+  kafka:
+    build: .
+    ports:
+      - "9029:9029"
+    environment:
+      - config_zookeeper_connect:zookeeper:2181
